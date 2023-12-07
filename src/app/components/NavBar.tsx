@@ -1,7 +1,7 @@
 "use  client";
 import React from 'react'
 import NavLinks from './NavLinks';
-
+import { useRouter } from 'next/navigation';
 const NAV_LINKS = [
     {
         name: 'About',
@@ -19,24 +19,23 @@ const NAV_LINKS = [
 const NavBar = () => {
 
     const [menuIsOpen, setMenuIsOpen] = React.useState(false);
+    const router = useRouter();
 
     const menuHandler = () => {
         return setMenuIsOpen(state => { return !state })
     }
 
-    const logobutton = () => {
-        const element = document.createElement('a');
-        element.href = '#hero'
-        document.body.appendChild(element);
-        element.click();
-        document.body.removeChild(element);
+    const backToHero = () => {
+        router.push('#hero')
     }
+
+    
 
     return (
         <div className='w-full fixed shadow-xl rounded-b-xl bg-slate-900 flex flex-col items-center'>
             <div className=' flex flex-row w-full justify-between items-center p-5'>
                 <div className=''>
-                    <button onClick={() => logobutton()}>
+                    <button onClick={() => {backToHero()}}>
                         <h1 className='text-white font-bold text-3xl md:text-5xl px-10'>Logo</h1>
                     </button>
 
