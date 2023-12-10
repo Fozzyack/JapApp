@@ -19,16 +19,16 @@ const DashboardLayout = async({
     const session = await getServerSession(options)
 
     if(!session) {
-        redirect('/api/auth/signin?callback=/dashboard')
+        redirect('/api/auth/signin?callbackUrl=/dashboard')
     }
 
     return (
-        <section className='bg-[#121212] h-screen p-5 md:p-16'>
+        <section className='bg-[#121212] h-screen p-5 md:p-16 shadow'>
             <div className='flex flex-row'>
-                <div className={`${widths.width}`}>
+                <div className=''>
                     <NavBar />
                 </div>
-                <div className={`${widths.width_c}`}>
+                <div className='md:ml-[200px] w-full border'>
                     {children}
                 </div>
 
