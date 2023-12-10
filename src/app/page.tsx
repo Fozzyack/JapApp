@@ -5,7 +5,7 @@ import MeetYourTeam from './components/MeetYourTeam'
 import NavBar from './components/NavBar'
 import Pricing from './components/Pricing'
 import { motion } from 'framer-motion';
-
+ 
 export default function Home() {
   return (
     <main className='bg-[#121212] flex flex-col'>

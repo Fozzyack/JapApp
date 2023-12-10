@@ -27,7 +27,7 @@ const Hero = () => {
                     <button className=' bg-gradient-to-br from-purple-600 to bg-blue-500 w-full rounded-full py-3 text-center' onClick={() => (redirectButton('/signin'))}>
                         Sign Up
                     </button>
-                    <button className=' bg-gradient-to-br from-purple-600 to bg-blue-500 w-full rounded-full py-1' onClick={() => (redirectButton('/login'))}>
+                    <button className=' bg-gradient-to-br from-purple-600 to bg-blue-500 w-full rounded-full py-1' onClick={() => (redirectButton('/dashboard'))}>
                         <div className='rounded-full bg-[#121212] mx-1 py-2 text-center'>
                             <span className=' rounded-full font-bold '>
                                 Login
