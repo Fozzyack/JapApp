@@ -23,12 +23,12 @@ const DashboardLayout = async({
     }
 
     return (
-        <section className='bg-[#121212] h-screen p-5 md:p-16 shadow'>
+        <section className='bg-[#191a2f] h-screen p-5 md:p-16 shadow'>
             <div className='flex flex-row'>
                 <div className=''>
                     <NavBar />
                 </div>
-                <div className='md:ml-[200px] w-full border'>
+                <div className='md:ml-[200px] w-full'>
                     {children}
                 </div>
 
