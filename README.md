@@ -3,6 +3,8 @@
   <p>An app to help language students learn Japanese</p>
 </div>
 
+![HeroImage](gitimgs/Login-Bg.png)
+
 # Features
 - Flashcards
 - AI Chatbot
