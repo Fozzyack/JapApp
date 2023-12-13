@@ -5,7 +5,7 @@
 
 
 ## Main Tech Stack
-* [![Next][Next.js]][Next-url]
+*[![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
 * [![JQuery][JQuery.com]][JQuery-url]
 * [![Tailwind][https://tailwindcss.com/]][TailwindCss-url]
