@@ -5,10 +5,10 @@
 
 
 ## Main Tech Stack
-- NextJs
-- React
-- PostgreSQL
-- TailwindCSS
+* [![Next][Next.js]][Next-url]
+* [![React][React.js]][React-url]
+* [![JQuery][JQuery.com]][JQuery-url]
+* [![Tailwind][https://tailwindcss.com/]][TailwindCss-url]
 ### For Card Scripts
 - python
 - pandas
