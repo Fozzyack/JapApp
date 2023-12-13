@@ -1,5 +1,5 @@
 <div align='center'>
-  <h3 font-size='80px'>JapApp</h3>
+  <h2>JapApp</h2>
   <p>An app to help language students learn Japanese</p>
 </div>
 
