@@ -5,8 +5,9 @@
 
 ![HeroImage](gitimgs/Login-Bg.png)
 
-# Features
+# Features - Implemented but not finished
 - [x] Landing Page
+- [x] Authentication System
 - [ ] Flashcards
 - [ ] AI Chatbot
 - [ ] Reading with Grammar explanations
