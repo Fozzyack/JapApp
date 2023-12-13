@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link';
 import React from 'react'
 
 interface Deck {
@@ -33,9 +34,11 @@ const Decks = () => {
     <div className='flex flex-row flex-wrap gap-3'>
         {
             deckInfo.map((deck : Deck) => (
-                <div key={deck.id} className='p-3 rounded-xl bg-[#121212] text-white'>
+                <div key={deck.id} className='p-3 rounded-xl bg-[#121212] text-white flex flex-col items-center gap-2'>
                     <h1>{deck.name}</h1>
-                    <p>{deck.next_review}</p>
+                    <Link href={`/dashboard/flashcards/${deck.id}`}>
+                        <span>Open</span>
+                    </Link>
                 </div>
             ))
         }

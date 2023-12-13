@@ -14,8 +14,11 @@ interface ExtendedSession extends Session {
 
 export async function GET(req: Request) {
     const session = await getServerSession(options) as ExtendedSession
-    const sql = `select id, name, next_review from decks where "userId" = $1`
+    const sql = `select * from decks
+                JOIN deck_connector ON decks.id=deck_connector."deckId" where "userId" = $1`
+        
     const decks = await pool.query(sql, [session?.user?.id])
+    console.log(decks.rows)
     
     return Response.json(decks.rows);
 }

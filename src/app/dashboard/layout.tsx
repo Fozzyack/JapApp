@@ -28,7 +28,7 @@ const DashboardLayout = async({
                 <div className=''>
                     <NavBar />
                 </div>
-                <div className='md:ml-[200px] w-full'>
+                <div className='md:ml-[250px] w-full'>
                     {children}
                 </div>
 

@@ -1,7 +1,7 @@
 import type { NextAuthOptions, Session } from "next-auth";
 import GoogleProvider from 'next-auth/providers/google'
 import GithubProvider from "next-auth/providers/github";
-import PostgresAdapter from "@auth/pg-adapter";
+import PostgresAdapter from "@/utils/adapter";
 import pool from '@/utils/db';
 import EmailProvider from "next-auth/providers/email"
 import { AdapterUser } from "next-auth/adapters";
