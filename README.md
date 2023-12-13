@@ -5,7 +5,7 @@
 
 
 ## Main Tech Stack
-[![Next][Next.js]][Next-url]
+* [![NextJs](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
 * [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 * [![JQuery][JQuery.com]][JQuery-url]
 * [![Tailwind][https://tailwindcss.com/]][TailwindCss-url]
