@@ -6,7 +6,7 @@
 
 ## Main Tech Stack
 [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
+* [https://shields.io/badge/react-black?logo=react&style=for-the-badge]
 * [![JQuery][JQuery.com]][JQuery-url]
 * [![Tailwind][https://tailwindcss.com/]][TailwindCss-url]
 ### For Card Scripts
