@@ -6,7 +6,7 @@
 ![HeroImage](gitimgs/Login-Bg.png)
 
 # Features
-- [ ] Landing Page
+- [x] Landing Page
 - [ ] Flashcards
 - [ ] AI Chatbot
 - [ ] Reading with Grammar explanations
