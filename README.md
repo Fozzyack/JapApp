@@ -1,8 +1,13 @@
 <div align='center'>
-  <h1>JapApp</h3>
+  <h3>JapApp</h3>
   <p>An app to help language students learn Japanese</p>
 </div>
 
+# Features
+- Flashcards
+- AI Chatbot
+- Reading with Grammar explanations
+- Competitive leaderboards
 
 ## Main Tech Stack
 * [![NextJs](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
