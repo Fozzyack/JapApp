@@ -5,11 +5,13 @@
 
 ![HeroImage](gitimgs/Login-Bg.png)
 
-# Features
-- Flashcards
-- AI Chatbot
-- Reading with Grammar explanations
-- Competitive leaderboards
+# Features - Implemented but not finished
+- [x] Landing Page
+- [x] Authentication System
+- [ ] Flashcards
+- [ ] AI Chatbot
+- [ ] Reading with Grammar explanations
+- [ ] Competitive leaderboards
 
 ## Main Tech Stack
 * [![NextJs](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
