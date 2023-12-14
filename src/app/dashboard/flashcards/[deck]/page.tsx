@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 
-const page = ({ params }: { params: { deck: number } }) => {
+const Page = ({ params }: { params: { deck: number } }) => {
 
   const [deckInfo, setDeckInfo] = useState({
     name: '',
@@ -28,9 +28,9 @@ const page = ({ params }: { params: { deck: number } }) => {
 
     setDeckInfo(await res.json())
   }
-  useEffect(() => {
+ useEffect(() => {
     getDeckInfo();
-  }, []);
+  });
 
   console.log(deckInfo)
 
@@ -53,4 +53,4 @@ const page = ({ params }: { params: { deck: number } }) => {
   )
 }
 
-export default page
+export default Page
