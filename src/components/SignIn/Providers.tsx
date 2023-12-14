@@ -3,6 +3,7 @@ import { signIn } from 'next-auth/react'
 import Image from 'next/image'
 import React from 'react'
 import GithubImage from '@/assets/github-mark-white.png'
+
 const Providers = () => {
     const buttonSignIn = (provider: string) => {
         signIn(provider, {callbackUrl: '/dashboard'});
