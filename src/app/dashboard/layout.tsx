@@ -11,11 +11,6 @@ const DashboardLayout = async({
 }: {
     children: React.ReactNode
 }) => {
-    const navbar_width = 200
-    const widths = {
-        width: `max-w-[${navbar_width}px]`,
-        width_c: `ml-[${navbar_width}px]`
-    }
     const session = await getServerSession(options)
 
     if(!session) {
@@ -23,12 +18,12 @@ const DashboardLayout = async({
     }
 
     return (
-        <section className='bg-[#191a2f] h-screen p-5 md:p-16 shadow'>
-            <div className='flex flex-row'>
-                <div className=''>
+        <section className='bg-[#191a2f] min-h-screen max-h-full shadow px-4 md:p-16 '>
+            <div className='flex flex-col md:flex-row gap-3'>
+                <div className='md:w-[300px]'>
                     <NavBar />
                 </div>
-                <div className='md:ml-[250px] w-full'>
+                <div className='w-full'>
                     {children}
                 </div>
 

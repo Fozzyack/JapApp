@@ -18,7 +18,6 @@ export async function GET(req: Request) {
                 JOIN deck_connector ON decks.id=deck_connector."deckId" where "userId" = $1`
         
     const decks = await pool.query(sql, [session?.user?.id])
-    console.log(decks.rows)
     
     return Response.json(decks.rows);
 }

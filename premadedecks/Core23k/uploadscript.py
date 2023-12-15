@@ -12,7 +12,7 @@ def read_file(file_name):
 
 def flashcard_texts_upload(cardId, header, text, position, cur, conn):
     cur.execute("""
-                    INSERT INTO flashcard_texts ("cardId", position, header, content)
+                    INSERT INTO flashcard_texts ("cardId", position, text_header, content)
                     VALUES (%s, %s, %s, %s)
                     """,
                     (cardId, position, header, text)
@@ -24,7 +24,7 @@ def flashcard_images_upload(cardId, header, image_file, cur, conn):
     if image == "nan":
         image = ''
     cur.execute("""
-                    INSERT INTO flashcard_images ("cardId", header, image_file)
+                    INSERT INTO flashcard_images ("cardId", image_header, image_file)
                     VALUES (%s, %s, %s)
                     """,
                     (cardId, header, image)
@@ -36,7 +36,7 @@ def flashcard_audio_upload(cardId, header, audio_file, cur, conn):
     if audio == "nan":
         audio = ''
     cur.execute("""
-                    INSERT INTO flashcard_audios ("cardId", header, audio_file)
+                    INSERT INTO flashcard_audios ("cardId", audio_header, audio_file)
                     VALUES (%s, %s, %s)
                     """,
                     (cardId, header, audio)
@@ -49,7 +49,7 @@ def row_by_row(df, conn, cur):
                 INSERT INTO decks (name, description, author, premade)
                 VALUES(%s, %s, %s,  %s)
                 """,
-                ('Core2.3k', 'A large and extensive vocabulary list for japanese students with text  images and  audio', 'Anacreon by DJT', True )
+                ('Core2.3k', 'A large and extensive vocabulary list for japanese students with text  images and  audio.\n "If you’re just starting to learn Japanese it may be a little overwhelming to jump straight into reading native content. Learning a list of common words can ease you into reading more efficiently. NOTE: Do not worry about the example sentences, just learn the words. The sentences are there to help you learn the word but if you can’t read them then please ignore them." - Author Note', 'Anacreon by DJT', True )
                 )
     
     conn.commit()
@@ -67,10 +67,10 @@ def row_by_row(df, conn, cur):
         print('Creating flashcard')
         print(row)
         cur.execute("""
-                    INSERT INTO flashcards ("deckId", question)
-                    VALUES (%s, %s)
+                    INSERT INTO flashcards ("deckId", question, card_order)
+                    VALUES (%s, %s, %s)
                     """,
-                    (deck, question)
+                    (deck, question, index + 1)
         )
         conn.commit()
         flashcard_texts_upload(index + 1, 'Reading:', reading, 0, cur, conn)

@@ -1,4 +1,4 @@
-'use client'
+
 import React from 'react'
 import Image from 'next/image'
 import Logo from '@/assets/HeroImage.png'
@@ -7,20 +7,21 @@ import { useRouter } from 'next/navigation'
 const NavSection = () => {
     const router = useRouter();
     return (
-        <div className='divide-y divide-[#48455b] bg-[#242544] text-white rounded-xl px-2 py-10 flex flex-col gap-10 items-center'>
+        <div className='divide-y divide-[#48455b] bg-[#242544] text-white rounded-xl px-2 py-10 flex flex-col gap-10 items-center shadow-xl max-h-[60%] md:max-h-full'>
             <div >
                 <button className='flex flex-col items-center gap-2 font-bold' onClick={() => { router.push('/dashboard') }}>
                     <Image src={Logo} alt='Logo' width={150} height={150} className='rounded-full  bg-purple-800' />
                     <h3>Midnight Mari</h3>
                 </button>
             </div>
-            <div className='flex flex-col gap-5 p-4'>
+            <div className='flex flex-col gap-5 p-4 overflow-auto md:overflow-hidden'>
                 <div>
                     <Link href={'/dashboard/flashcards'} >
                         <div className='flex flex-row gap-2'>
                             <svg fill="#FFFFFF" width="800px" height="800px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg" className='h-6 w-6'>
                                 <path d="M200.00781,88V200a16.01833,16.01833,0,0,1-16,16h-144a16.01833,16.01833,0,0,1-16-16V88a16.01833,16.01833,0,0,1,16-16h144A16.01833,16.01833,0,0,1,200.00781,88Zm16-48h-152a8,8,0,0,0,0,16h152V176a8,8,0,0,0,16,0V56A16.01833,16.01833,0,0,0,216.00781,40Z" />
                             </svg>
+
                             <span>Flashcards</span>
                         </div></Link>
                 </div>

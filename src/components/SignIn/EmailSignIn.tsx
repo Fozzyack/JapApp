@@ -9,6 +9,7 @@ const EmailSignIn = () => {
   const [emailSent, setEmailSent] = React.useState(false)
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
+    console.log(email)
   }
 
   const signinWithEmail = () => {
