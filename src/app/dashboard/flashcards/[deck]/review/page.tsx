@@ -2,7 +2,7 @@ import React from 'react'
 import { headers } from 'next/headers';
 import Link from 'next/link';
 import Image from 'next/image';
-import FlashCard from '@/flashcardfiles/FlashCard';
+import Review from '@/components/Flashcards/Review';
 
 async function getData(deckID: number) {
   const res = await fetch(`${process.env.NEXTAUTH_URL}/api/flashcards/getdeckcards/${deckID}`,
@@ -53,14 +53,8 @@ const Page = async ({ params }: { params: { deck: number } }) => {
   const flashcards = mergeArraysPreservingOrder(cards.new_cards, cards.revise_cards);
 
   return (
-    <div className='flex flex-col justify-center items-center border h-full'>
-      {
-        flashcards.map((card, index) => (
-          <div className='grid grid-cols-3 flex-wrap'>
-            <FlashCard card={card} />
-          </div>
-        ))
-      }
+    <div className='h-full'>
+      <Review cards={flashcards}/>
     </div>
 
   );

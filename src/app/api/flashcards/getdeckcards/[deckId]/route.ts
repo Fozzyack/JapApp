@@ -13,8 +13,8 @@ interface ExtendedSession extends Session {
 export async function GET(req: Request, { params }: { params: { deckId: number } }) {
 
     const session = await getServerSession(options) as ExtendedSession
-    const new_cards_sql = `SELECT flashcards.id, question, image_header, image_file, "deckId" FROM flashcards JOIN flashcard_connector ON flashcards.id=flashcard_connector."flashcardId" JOIN flashcard_images ON flashcards.id=flashcard_images."cardId" WHERE "userId"=$1 AND "deckId"=$2 AND next_review IS NULL ORDER BY card_order ASC`
-    const prev_studied_sql = `SELECT flashcards.id, question, image_header, image_file, "deckId" FROM flashcards JOIN flashcard_connector ON flashcards.id=flashcard_connector."flashcardId" JOIN flashcard_images ON flashcards.id=flashcard_images."cardId" WHERE "userId"=$1 AND "deckId"=$2 AND next_review<NOW() ORDER BY next_review ASC`
+    const new_cards_sql = `SELECT flashcards.id, question, image_header, image_file, "deckId" FROM flashcards JOIN flashcard_connector ON flashcards.id=flashcard_connector."flashcardId" JOIN flashcard_images ON flashcards.id=flashcard_images."cardId" WHERE "userId"=$1 AND "deckId"=$2 AND next_review IS NULL ORDER BY card_order ASC LIMIT 20`
+    const prev_studied_sql = `SELECT flashcards.id, question, image_header, image_file, "deckId" FROM flashcards JOIN flashcard_connector ON flashcards.id=flashcard_connector."flashcardId" JOIN flashcard_images ON flashcards.id=flashcard_images."cardId" WHERE "userId"=$1 AND "deckId"=$2 AND next_review<NOW() ORDER BY next_review ASC LIMIT 20`
     const cards_new = await pool.query(new_cards_sql, [session?.user?.id, params.deckId])
     const cards_revise = await pool.query(prev_studied_sql, [session?.user?.id, params.deckId])
 

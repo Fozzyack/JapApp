@@ -78,8 +78,8 @@ def row_by_row(df, conn, cur):
         flashcard_texts_upload(index + 1, 'Sentence:', sentence, 2, cur, conn)
         flashcard_texts_upload(index + 1, 'Sentence  English:', sentence_english, 3, cur, conn)
         flashcard_images_upload(index + 1, "Image: ", image, cur,conn)
-        flashcard_audio_upload(index + 1, "Word Audio: ", audio, cur,conn)
-        flashcard_audio_upload(index + 1, "Sentence Audio: ", sentence_audio, cur,conn)
+        flashcard_audio_upload(index + 1, "Word Audio ", audio, cur,conn)
+        flashcard_audio_upload(index + 1, "Sentence Audio ", sentence_audio, cur,conn)
 
 def main():
     conn = psycopg2.connect(dbname=os.environ.get('DB_DATABASE'), user=os.environ.get('DB_USER'), password=os.environ.get('DB_PASSWORD'), host=os.environ.get('DB_HOST'))

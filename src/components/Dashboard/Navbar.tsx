@@ -8,7 +8,7 @@ const Navbar = () => {
     const [showNav, setShowNav] = React.useState(false)
     return (
         <SessionProvider>
-            <motion.div id='navbar' className='hidden md:flex h-full fixed flex-col gap-5'
+            <motion.div id='navbar' className='hidden md:flex h-full fixed flex-col gap-5 z-20'
                 initial={{ opacity: 0, y: -200 }}
                 animate={{ opacity: 1, y: 0 }}
             >
