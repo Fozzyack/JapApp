@@ -1,7 +1,6 @@
 'use client'
 import Image from 'next/image'
 import React, { useRef } from 'react'
-import useSound from 'use-sound'
 
 interface cards {
     id: number,
@@ -25,8 +24,6 @@ const Review = ({ cards }: { cards: cards[] }) => {
 
     const [cardAmount, setCardAmount] = React.useState(cards.length)
     const [showAnswer, setShowAnswer] = React.useState(false);
-    const [cardsCompleted, setCardsCompleted] = React.useState(0);
-    const [play] = useSound('');
     const soundRef = useRef<HTMLAudioElement | null>(null);
 
     const playsound = (soundfile: string) => {
@@ -35,21 +32,33 @@ const Review = ({ cards }: { cards: cards[] }) => {
         (soundRef.current as HTMLAudioElement | null)?.play();
     };
 
+    const wrongCard = () => {
+        const wrong_card = cards[0];
+        const random_index = Math.floor(Math.random() * (cards.length))
+        cards.push(wrong_card);
+        cards.shift();
+        
+        cards[cards.length - 1] = cards[random_index]
+        cards[random_index] =  wrong_card
+        console.log(random_index)
+
+    }
+
     const showAnswerButton = () => {
         setShowAnswer(true);
     }
 
     const answer = (correct: boolean) => {
         if (correct) {
-            setCardsCompleted(prev => prev + 1);
-            const completed_card = cards.shift();
+            cards.shift();
             setCardAmount(prev => prev - 1);
+        } else {
+            wrongCard()
         }
 
-        console.log(cardAmount)
+        console.log(cards)
         return setShowAnswer(false);
     }
-    console.log(cards[0].image_file)
     return (
         <div className='h-full'>
             {
