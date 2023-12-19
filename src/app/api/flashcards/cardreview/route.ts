@@ -25,12 +25,22 @@ export async function POST(req: Request) {
 
         const session = await getServerSession(options) as ExtendedSession;
         const last_delay_sql = `SELECT * FROM flashcard_connector WHERE "userId"=$1 AND "flashcardId"=$2`;
+        const update_sql = `UPDATE flashcard_connector SET next_review=$1, last_delay=$2 WHERE "userId"=$3 AND "flashcardId"=$4 RETURNING *`
 
         const data = await req.json();
 
         const card_connector = await pool.query(last_delay_sql, [session?.user?.id, data.card_id]);
 
-        switch (card_connector.rows[0].last_delay) {
+        let same_delay = card_connector.rows[0].last_delay + 1
+
+        if (data.incorrect) {
+            if (card_connector.rows[0].last_delay === 0) {
+                same_delay = 0
+            } else {
+                same_delay = card_connector.rows[0].last_delay
+            }
+        }
+        switch (same_delay) {
             case 0:
                 next_review_delay = day
                 break
@@ -46,18 +56,21 @@ export async function POST(req: Request) {
             case 4:
                 next_review_delay = day * 30
                 break
-            case 5:
+            default:
                 next_review_delay = day * 30 * 2
                 break
         }
 
-
+        const newCard = await pool.query(update_sql, [new Date(Date.now() + next_review_delay), same_delay, session.user?.id, data.id])
 
 
         return Response.json({ msg: 'nice' });
 
     } catch (error) {
-        return Response.status(500).json({msg: error.message})
+        return new Response (error.message , {
+            status: 500,
+            headers: {'Content-Type' : 'application/json'}
+        })
     }
 
 }
