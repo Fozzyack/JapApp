@@ -64,10 +64,10 @@ export async function POST(req: Request) {
         const newCard = await pool.query(update_sql, [new Date(Date.now() + next_review_delay), same_delay, session.user?.id, data.id])
 
 
-        return Response.json({ msg: 'nice' });
+        return Response.json({ msg: 'Updated Successfully' });
 
     } catch (error) {
-        return new Response (error.message , {
+        return new Response ("There was an Error" , {
             status: 500,
             headers: {'Content-Type' : 'application/json'}
         })

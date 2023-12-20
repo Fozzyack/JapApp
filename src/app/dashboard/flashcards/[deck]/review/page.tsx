@@ -1,7 +1,5 @@
 import React from 'react'
 import { headers } from 'next/headers';
-import Link from 'next/link';
-import Image from 'next/image';
 import Review from '@/components/Flashcards/Review';
 
 async function getData(deckID: number) {
