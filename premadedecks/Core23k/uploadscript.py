@@ -43,7 +43,7 @@ def flashcard_audio_upload(cardId, header, audio_file, cur, conn):
         )
     conn.commit()
         
-def row_by_row(df, conn, cur):
+def core2k_upload(df, conn, cur):
     
     cur.execute("""
                 INSERT INTO decks (name, description, author, premade)
@@ -78,15 +78,47 @@ def row_by_row(df, conn, cur):
         flashcard_texts_upload(index + 1, 'Sentence:', sentence, 2, cur, conn)
         flashcard_texts_upload(index + 1, 'Sentence  English:', sentence_english, 3, cur, conn)
         flashcard_images_upload(index + 1, "Image: ", image, cur,conn)
-        flashcard_audio_upload(index + 1, "Word Audio ", audio, cur,conn)
-        flashcard_audio_upload(index + 1, "Sentence Audio ", sentence_audio, cur,conn)
+        flashcard_audio_upload(index + 1, "Word Audio", audio, cur,conn)
+        flashcard_audio_upload(index + 1, "Sentence Audio", sentence_audio, cur,conn)
 
+def hiragana_upload(df, conn, cur):
+    cur.execute("""
+                INSERT INTO decks (name, description, author, premade)
+                VALUES(%s, %s, %s,  %s)
+                """,
+                ('Hiragana', 'Master 46 basic hiragana with illustration-based mnemonics and audio. This deck also includes subdecks covering variation hiragana, such as dakuten (like が) and combination kana (like にゅ)', 'Tofugu', True))
+    
+    conn.commit()
+    
+    for index, row in df.iterrows():
+        question = row['Kana']
+        romaji = str(row['Romaji'])
+        image = str(row['Mnemonic Image']).replace('<img src="', '').replace('">', '')
+        text = str(row['Mnemonic Text']).replace('<u>', '').replace('</u>', '').replace('<br>', '').replace('</br>', '')
+        audio = str(row['Audio']).replace('[sound:', '').replace(']', '')
+        deck =  2
+        print('Creating flashcard')
+        print(row)
+        cur.execute("""
+                    INSERT INTO flashcards ("deckId", question, card_order)
+                    VALUES (%s, %s, %s)
+                    """,
+                    (deck, question, index + 1)
+        )
+        conn.commit()
+        flashcard_texts_upload(index + 1973, "Romaji: ", romaji, 0, cur, conn)
+        flashcard_texts_upload(index + 1973, "Mnemonic Text: ",  text, 1,cur, conn)
+        flashcard_images_upload(index + 1973, "Mnemonic Image: ", image, cur,conn)
+        flashcard_audio_upload(index + 1973, "Audio", audio, cur,conn)
+        
 def main():
     conn = psycopg2.connect(dbname=os.environ.get('DB_DATABASE'), user=os.environ.get('DB_USER'), password=os.environ.get('DB_PASSWORD'), host=os.environ.get('DB_HOST'))
     cur = conn.cursor()    
     
-    df = read_file('corexl.xlsx')
-    row_by_row(df, conn, cur)
+    core_2k_df = read_file('corexl.xlsx')
+    hiragana_df = read_file('Hiragana.xlsx')
+    core2k_upload(core_2k_df, conn, cur)
+    hiragana_upload(hiragana_df, conn, cur)
     cur.close
     conn.close
 

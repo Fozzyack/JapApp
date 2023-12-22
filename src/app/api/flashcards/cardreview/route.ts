@@ -20,9 +20,8 @@ export async function POST(req: Request) {
         const hour = minute * 60;
         const day = hour * 24;
 
-        //const next-study delay
-        let next_review_delay = -1
 
+        let next_review_delay = -1
         const session = await getServerSession(options) as ExtendedSession;
         const last_delay_sql = `SELECT * FROM flashcard_connector WHERE "userId"=$1 AND "flashcardId"=$2`;
         const update_sql = `UPDATE flashcard_connector SET next_review=$1, last_delay=$2 WHERE "userId"=$3 AND "flashcardId"=$4 RETURNING *`
@@ -30,16 +29,19 @@ export async function POST(req: Request) {
         const data = await req.json();
 
         const card_connector = await pool.query(last_delay_sql, [session?.user?.id, data.card_id]);
-
-        let same_delay = card_connector.rows[0].last_delay + 1
+        let update_delay = card_connector.rows[0].last_delay
+        let same_delay = card_connector.rows[0].last_delay
 
         if (data.incorrect) {
             if (card_connector.rows[0].last_delay === 0) {
                 same_delay = 0
             } else {
-                same_delay = card_connector.rows[0].last_delay
+                same_delay = card_connector.rows[0].last_delay - 1
             }
+        } else {
+            update_delay ++
         }
+        console.log(same_delay)
         switch (same_delay) {
             case 0:
                 next_review_delay = day
@@ -61,8 +63,8 @@ export async function POST(req: Request) {
                 break
         }
 
-        const newCard = await pool.query(update_sql, [new Date(Date.now() + next_review_delay), same_delay, session.user?.id, data.id])
-
+        const newCard = await pool.query(update_sql, [new Date(Date.now() + next_review_delay), update_delay, session.user?.id, data.card_id])
+        console.log(newCard.rows[0])
 
         return Response.json({ msg: 'Updated Successfully' });
 

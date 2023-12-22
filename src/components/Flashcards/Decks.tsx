@@ -38,10 +38,10 @@ const Decks = () => {
     const coreImages = (deckId: number) => {
         if(deckId === 1) {
             return(
-                <Image src={Core23kImage} alt='JapImage' />
+                <Image src={Core23kImage} alt='JapImage' height={400} className='rounded-xl'/>
             )
         } else {
-            return <Image src={images[deckId % 3 - 1]} alt='JapImage' />
+            return <Image src={images[deckId % 3 - 1]} alt='JapImage' height={400} className='rounded-xl'/>
         }
     }
 

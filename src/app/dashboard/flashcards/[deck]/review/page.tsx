@@ -27,11 +27,12 @@ interface cards {
     position: number,
     text_header: string,
     content: string
-  }[]
+  }[],
   audio: {
     audio_header: string,
     audio_file: string
-  }[]
+  }[],
+  correct: boolean | undefined
 }
 
 

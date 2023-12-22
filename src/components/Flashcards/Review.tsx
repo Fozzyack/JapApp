@@ -14,12 +14,31 @@ interface cards {
         position: number,
         text_header: string,
         content: string
-    }[]
+    }[],
     audio: {
         audio_header: string,
         audio_file: string
-    }[]
+    }[],
+    correct: boolean | undefined
 }
+
+const submitCard = async (card_id: number, correct: boolean | undefined) => {
+    const res = await fetch('/api/flashcards/cardreview', {
+        method: 'POST',
+        body: JSON.stringify({
+            card_id: card_id,
+            incorrect: !correct
+        })
+    });
+    if (!res.ok) {
+        throw new Error('There was an Error submitting card')
+    }
+    else {
+        console.log(await res.json())
+    }
+}
+
+
 const Review = ({ cards }: { cards: cards[] }) => {
 
     const [cardAmount, setCardAmount] = React.useState(cards.length)
@@ -32,9 +51,11 @@ const Review = ({ cards }: { cards: cards[] }) => {
         (soundRef.current as HTMLAudioElement | null)?.play();
     };
 
+    
     const wrongCard = () => {
         const wrong_card = cards[0];
         const random_index = Math.floor(Math.random() * (cards.length))
+        cards[0].correct = false
         cards.push(wrong_card);
         cards.shift();
         
@@ -50,6 +71,7 @@ const Review = ({ cards }: { cards: cards[] }) => {
 
     const answer = (correct: boolean) => {
         if (correct) {
+            submitCard(cards[0].id, cards[0].correct)
             cards.shift();
             setCardAmount(prev => prev - 1);
         } else {

@@ -154,10 +154,10 @@ export default function PostgresAdapter(client: Pool): Adapter {
                 image,
             ]);
 
-            for (let i = 1; i < 1973; i++) {
+            for (let i = 1; i < 2074; i++) {
                 await client.query(`INSERT INTO flashcard_connector ("userId", "flashcardId") VALUES($1, $2)`, [result.rows[0].id, i]);
             }
-            for (let i = 1; i < 2; i++) {
+            for (let i = 1; i < 3; i++) {
                 await client.query(`INSERT INTO deck_connector ("userId", "deckId") VALUES($1, $2)`, [result.rows[0].id, i]);
             }
 

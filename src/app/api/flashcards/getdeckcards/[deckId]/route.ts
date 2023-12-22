@@ -40,11 +40,15 @@ export async function GET(req: Request, { params }: { params: { deckId: number }
 
     }
 
+    for(var i = 0; i < cards_new.rows.length; i++) {
+        cards_new.rows[i].correct = true
+    }
+    for(var i = 0; i < cards_revise.rows.length; i++) {
+        cards_revise.rows[i].correct = true
+    }
     const payload = {
         new_cards: cards_new.rows,
         revise_cards: cards_revise.rows
     }
-    console.log(payload)
-    console.log(payload.new_cards[0])
     return Response.json(payload)
 }
