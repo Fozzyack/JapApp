@@ -8,7 +8,8 @@
 # Features - Implemented but not finished
 - [x] Landing Page
 - [x] Authentication System
-- [ ] Flashcards
+- [x] Flashcards
+- [ ] User Profile
 - [ ] AI Chatbot
 - [ ] Reading with Grammar explanations
 - [ ] Competitive leaderboards
@@ -30,8 +31,11 @@
 - [x] Setup Flashcard Feature
 - [x] Create DB for Flashcard Feature
 - [x] Create Deck Component
-- [ ] Create Flashcard Component
-- [ ] Add Social Coomponent
+- [x] Upload a few more decks
+- [x] Create Flashcard Component
 - [ ] Add Point system
+- [ ] Create a  Profile page
+- [ ] Add Social Component
 - [ ] Begin design on AI Chatbot
 - [ ] Begin Design for Reading Component
+- [ ] Allow users to create their own decks (flashcards)
