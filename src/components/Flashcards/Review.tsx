@@ -102,7 +102,7 @@ const Review = ({ cards }: { cards: cards[] }) => {
                                     
                                     {
                                         cards[0].audio.map((audio, index) => (
-                                            <div className='flex flex-row gap-3'>
+                                            <div className='flex flex-row gap-3' key={index}>
                                                 <button className='bg-blue-600 px-3 py-1 rounded-xl' onClick={() => { playsound(audio.audio_file) }}>{audio.audio_header}</button>
                                             </div>
                                         ))
